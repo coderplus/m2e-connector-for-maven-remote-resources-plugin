@@ -1,4 +1,4 @@
-M2E Connector for maven-remote-resources
+maven-remote-resources m2e connector
 =============================================
 
 This m2e connector for the Maven Remote Resources Plugin is designed to handle the bundle and process goals of the [maven-remote-resources-plugin](http://maven.apache.org/plugins/maven-remote-resources-plugin/)
