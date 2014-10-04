@@ -28,7 +28,7 @@ That's it!  The connector will run on full builds. It will be executed on increm
 Thanks for asking...
 
 * If you're a remote-resource:bundle or  remote-resource:process user:
-	* Test this out.  [File an issue](https://github.com/coderplusS/m2e-connector-for-maven-remote-resources-plugin/issues) if it doesn't
+	* Test this out.  [File an issue](https://github.com/coderplus/m2e-connector-for-maven-remote-resources-plugin/issues) if it doesn't
 	work for you.  File an issue if you think it should do something more, or something different.
 * If you're a Tycho/Eclipse Plugin/m2e  expert:
 	* File an issue or submit a pull request if there is something that could be done better.
