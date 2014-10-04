@@ -12,14 +12,19 @@ This m2e connector for the Maven Remote Resources Plugin is designed to handle t
 First off, note that this is currently Beta code.  It has been minimally tested, and all the usual early adopter
 warnings apply.  That said if you're willing to help test the connector all you have to do is:
 
-1. Add the below
-[update site](http://help.eclipse.org/juno/topic/org.eclipse.platform.doc.user/tasks/tasks-127.htm?cp=0_3_15_5):
+1. Drag the Install button into your eclipse workspace to install the connector from the Eclipse Market place
+[![Install the Connector](http://marketplace.eclipse.org/sites/all/modules/custom/marketplace/images/installbutton.png)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1936167)
 
-   http://coderplus.com/m2e-update-sites/maven-remote-resources-plugin/
-1. Install it into Eclipse like any other
-[new feature](http://help.eclipse.org/juno/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm?cp=0_3_15_1).
+or use the  [update site](http://coderplus.com/m2e-update-sites/maven-remote-resources-plugin/)
+
 1. Remove any [lifecycle mapping metadata](http://wiki.eclipse.org/M2E_plugin_execution_not_covered#ignore_plugin_goal)
 you might have had in your POMs for the remote-resource:bundle or  remote-resource:process goals.
+
+
+
+
+
+
 
 That's it!  The connector will run on full builds. It will be executed on incremental builds only if something interesting to the plugin has changed.
 
