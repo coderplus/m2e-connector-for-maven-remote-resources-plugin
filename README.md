@@ -15,7 +15,7 @@ warnings apply.  That said if you're willing to help test the connector all you 
 1. Drag the Install button into your eclipse workspace to install the connector from the Eclipse Market place
 [![Install the Connector](http://marketplace.eclipse.org/sites/all/modules/custom/marketplace/images/installbutton.png)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1936167)
 
-or use the  [update site](http://coderplus.com/m2e-update-sites/maven-remote-resources-plugin/)
+	or use the  [update site](http://coderplus.com/m2e-update-sites/maven-remote-resources-plugin/)
 
 2. Remove any [lifecycle mapping metadata](http://wiki.eclipse.org/M2E_plugin_execution_not_covered#ignore_plugin_goal)
 you might have had in your POMs for the remote-resource:bundle or  remote-resource:process goals.
