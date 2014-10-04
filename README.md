@@ -18,7 +18,7 @@ warnings apply.  That said if you're willing to help test the connector all you 
 	or use the  [update site](http://coderplus.com/m2e-update-sites/maven-remote-resources-plugin/)
 
 2. Remove any [lifecycle mapping metadata](http://wiki.eclipse.org/M2E_plugin_execution_not_covered#ignore_plugin_goal)
-you might have had in your POMs for the remote-resource:bundle or  remote-resource:process goals.
+you might have had in your POMs for the remote-resources:bundle or  remote-resources:process goals.
 
 
 
@@ -32,7 +32,7 @@ That's it!  The connector will run on full builds. It will be executed on increm
 
 Thanks for asking...
 
-* If you're a remote-resource:bundle or  remote-resource:process user:
+* If you're a remote-resources:bundle or  remote-resources:process user:
 	* Test this out.  [File an issue](https://github.com/coderplus/m2e-connector-for-maven-remote-resources-plugin/issues) if it doesn't
 	work for you.  File an issue if you think it should do something more, or something different.
 * If you're a Tycho/Eclipse Plugin/m2e  expert:
