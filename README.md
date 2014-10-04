@@ -17,7 +17,7 @@ warnings apply.  That said if you're willing to help test the connector all you 
 
 or use the  [update site](http://coderplus.com/m2e-update-sites/maven-remote-resources-plugin/)
 
-1. Remove any [lifecycle mapping metadata](http://wiki.eclipse.org/M2E_plugin_execution_not_covered#ignore_plugin_goal)
+2. Remove any [lifecycle mapping metadata](http://wiki.eclipse.org/M2E_plugin_execution_not_covered#ignore_plugin_goal)
 you might have had in your POMs for the remote-resource:bundle or  remote-resource:process goals.
 
 
