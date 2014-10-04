@@ -1,0 +1,6 @@
+target
+.DS_Store
+*.versionsBackup
+.project
+.settings
+.classpath
