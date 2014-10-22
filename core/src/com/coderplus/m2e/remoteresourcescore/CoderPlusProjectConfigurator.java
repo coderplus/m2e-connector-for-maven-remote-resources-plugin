@@ -55,10 +55,10 @@ public class CoderPlusProjectConfigurator extends AbstractJavaProjectConfigurato
 			boolean attachedToTest = Boolean.TRUE.equals(maven.getMojoParameterValue(mavenProject, execution, ATTACHED_TO_TEST,Boolean.class, new NullProgressMonitor()));
 			File outputDirectory = maven.getMojoParameterValue(mavenProject, execution, OUTPUT_DIRECTORY,File.class, new NullProgressMonitor());
 			IClasspathEntryDescriptor descriptor = null;
-			if(attached || attachedToMain){
+			if(attached && attachedToMain){
 				IPath relativeSourcePath = MavenProjectUtils.getProjectRelativePath(project,outputDirectory.getAbsolutePath());
 				descriptor  = classpath.addSourceEntry(project.getFullPath().append(relativeSourcePath),facade.getOutputLocation(), true);
-			} else  if(attachedToTest){
+			} else  if(attached && attachedToTest){
 				IPath relativeSourcePath = MavenProjectUtils.getProjectRelativePath(project,outputDirectory.getAbsolutePath());
 				descriptor = classpath.addSourceEntry(project.getFullPath().append(relativeSourcePath),facade.getTestOutputLocation(), true);
 			}
