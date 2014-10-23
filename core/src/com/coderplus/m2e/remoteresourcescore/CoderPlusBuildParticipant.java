@@ -79,7 +79,7 @@ public class CoderPlusBuildParticipant extends MojoExecutionBuildParticipant {
 
 		File outputDirectory = maven.getMojoParameterValue(project, execution, OUTPUT_DIRECTORY,File.class, new NullProgressMonitor());
 
-		setTaskName(monitor,false);
+		setTaskName(monitor);
 		//execute the maven mojo
 		final Set<IProject> result = executeMojo(kind, monitor);
 
