@@ -33,8 +33,8 @@ import org.eclipse.m2e.jdt.IClasspathEntryDescriptor;
 public class CoderPlusProjectConfigurator extends AbstractJavaProjectConfigurator {
 
 	private static final String OUTPUT_DIRECTORY = "outputDirectory";
-	private static final String ATTACHED_TO_TEST = "attachedToTest";
-	private static final String ATTACHED_TO_MAIN = "attachedToMain";
+	private static final String ATTACH_TO_TEST = "attachToTest";
+	private static final String ATTACH_TO_MAIN = "attachToMain";
 	private static final String ATTACHED = "attached";
 
 	@Override
@@ -51,14 +51,19 @@ public class CoderPlusProjectConfigurator extends AbstractJavaProjectConfigurato
 		assertHasNature(request.getProject(), "org.eclipse.jdt.core.javanature");
 		for (MojoExecution execution : getMojoExecutions(request, monitor)) {
 			boolean attached = Boolean.TRUE.equals(maven.getMojoParameterValue(mavenProject, execution, ATTACHED,Boolean.class, new NullProgressMonitor()));
-			boolean attachedToMain = Boolean.TRUE.equals(maven.getMojoParameterValue(mavenProject, execution, ATTACHED_TO_MAIN,Boolean.class, new NullProgressMonitor()));
-			boolean attachedToTest = Boolean.TRUE.equals(maven.getMojoParameterValue(mavenProject, execution, ATTACHED_TO_TEST,Boolean.class, new NullProgressMonitor()));
+			boolean attachToMain = Boolean.TRUE.equals(maven.getMojoParameterValue(mavenProject, execution, ATTACH_TO_MAIN,Boolean.class, new NullProgressMonitor()));
+			boolean attachToTest = Boolean.TRUE.equals(maven.getMojoParameterValue(mavenProject, execution, ATTACH_TO_TEST,Boolean.class, new NullProgressMonitor()));
 			File outputDirectory = maven.getMojoParameterValue(mavenProject, execution, OUTPUT_DIRECTORY,File.class, new NullProgressMonitor());
 			IClasspathEntryDescriptor descriptor = null;
-			if(attached && attachedToMain){
+			String version = execution.getVersion();
+			if(version.startsWith("1.0") || version.startsWith("1.1") || version.startsWith("1.2") || version.startsWith("1.3") || version.startsWith("1.4")){
+				attachToMain=true;
+				attachToTest=true;
+			}
+			if(attached && attachToMain){
 				IPath relativeSourcePath = MavenProjectUtils.getProjectRelativePath(project,outputDirectory.getAbsolutePath());
 				descriptor  = classpath.addSourceEntry(project.getFullPath().append(relativeSourcePath),facade.getOutputLocation(), true);
-			} else  if(attached && attachedToTest){
+			} else  if(attached && attachToTest){
 				IPath relativeSourcePath = MavenProjectUtils.getProjectRelativePath(project,outputDirectory.getAbsolutePath());
 				descriptor = classpath.addSourceEntry(project.getFullPath().append(relativeSourcePath),facade.getTestOutputLocation(), true);
 			}
