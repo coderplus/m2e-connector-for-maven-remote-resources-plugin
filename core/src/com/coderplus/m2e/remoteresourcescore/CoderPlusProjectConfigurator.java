@@ -25,12 +25,11 @@ import org.eclipse.m2e.core.project.IMavenProjectFacade;
 import org.eclipse.m2e.core.project.MavenProjectUtils;
 import org.eclipse.m2e.core.project.configurator.AbstractBuildParticipant;
 import org.eclipse.m2e.core.project.configurator.ProjectConfigurationRequest;
-import org.eclipse.m2e.jdt.AbstractJavaProjectConfigurator;
+import org.eclipse.m2e.jdt.AbstractSourcesGenerationProjectConfigurator;
 import org.eclipse.m2e.jdt.IClasspathDescriptor;
 import org.eclipse.m2e.jdt.IClasspathEntryDescriptor;
 
-@SuppressWarnings({ "deprecation" })
-public class CoderPlusProjectConfigurator extends AbstractJavaProjectConfigurator {
+public class CoderPlusProjectConfigurator extends AbstractSourcesGenerationProjectConfigurator {
 
 	private static final String OUTPUT_DIRECTORY = "outputDirectory";
 	private static final String ATTACH_TO_TEST = "attachToTest";
