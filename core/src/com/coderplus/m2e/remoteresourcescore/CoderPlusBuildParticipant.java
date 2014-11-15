@@ -12,6 +12,7 @@ package com.coderplus.m2e.remoteresourcescore;
 import java.io.File;
 import java.util.Set;
 
+import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.Scanner;
@@ -35,6 +36,9 @@ public class CoderPlusBuildParticipant extends MojoExecutionBuildParticipant {
 	private static final String PROCESS_GOAL = "process";
 	private static final String OUTPUT_DIRECTORY = "outputDirectory";
 	private static final String[] DEFAULT_INCLUDES = new String[]{ "**/*.txt", "**/*.vm", };
+	private static final String ATTACH_TO_TEST = "attachToTest";
+	private static final String ATTACH_TO_MAIN = "attachToMain";
+	private static final String ATTACHED = "attached";
 	public CoderPlusBuildParticipant(MojoExecution execution) {
 
 		super(execution, true);
@@ -54,6 +58,23 @@ public class CoderPlusBuildParticipant extends MojoExecutionBuildParticipant {
 		final BuildContext buildContext = getBuildContext();
 		final IFile pomFile = (IFile) getMavenProjectFacade().getProject().findMember("pom.xml");
 		
+		File outputDirectory = maven.getMojoParameterValue(project, execution, OUTPUT_DIRECTORY,File.class, new NullProgressMonitor());
+
+		
+		boolean attached = Boolean.TRUE.equals(maven.getMojoParameterValue(project, execution, ATTACHED,Boolean.class, new NullProgressMonitor()));
+		boolean attachToMain = Boolean.TRUE.equals(maven.getMojoParameterValue(project, execution, ATTACH_TO_MAIN,Boolean.class, new NullProgressMonitor()));
+		boolean attachToTest = Boolean.TRUE.equals(maven.getMojoParameterValue(project, execution, ATTACH_TO_TEST,Boolean.class, new NullProgressMonitor()));
+
+		if(attached && attachToMain){
+			Resource resource = new Resource();
+			resource.setDirectory(outputDirectory.getAbsolutePath());
+			project.addResource(resource);
+		} else  if(attached && attachToTest){
+			Resource resource = new Resource();
+			resource.setDirectory(outputDirectory.getAbsolutePath());
+			project.addTestResource(resource);
+		}
+
 		if(buildContext.isIncremental()){
 			if(!buildContext.hasDelta(pomFile.getLocation().toFile()) && PROCESS_GOAL.equals(execution.getGoal())) {
 				//ignore if there were no changes to the pom and was an incremental build
@@ -76,8 +97,6 @@ public class CoderPlusBuildParticipant extends MojoExecutionBuildParticipant {
 				}
 			}
 		}
-
-		File outputDirectory = maven.getMojoParameterValue(project, execution, OUTPUT_DIRECTORY,File.class, new NullProgressMonitor());
 
 		setTaskName(monitor);
 		//execute the maven mojo

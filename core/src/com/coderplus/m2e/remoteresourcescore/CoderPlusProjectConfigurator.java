@@ -12,6 +12,7 @@ package com.coderplus.m2e.remoteresourcescore;
 
 import java.io.File;
 
+import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.project.MavenProject;
 import org.eclipse.core.resources.IProject;
@@ -62,9 +63,15 @@ public class CoderPlusProjectConfigurator extends AbstractSourcesGenerationProje
 			if(attached && attachToMain){
 				IPath relativeSourcePath = MavenProjectUtils.getProjectRelativePath(project,outputDirectory.getAbsolutePath());
 				descriptor  = classpath.addSourceEntry(project.getFullPath().append(relativeSourcePath),facade.getOutputLocation(), true);
+				Resource resource = new Resource();
+				resource.setDirectory(outputDirectory.getAbsolutePath());
+				mavenProject.addResource(resource);
 			} else  if(attached && attachToTest){
 				IPath relativeSourcePath = MavenProjectUtils.getProjectRelativePath(project,outputDirectory.getAbsolutePath());
 				descriptor = classpath.addSourceEntry(project.getFullPath().append(relativeSourcePath),facade.getTestOutputLocation(), true);
+				Resource resource = new Resource();
+				resource.setDirectory(outputDirectory.getAbsolutePath());
+				mavenProject.addTestResource(resource);
 			}
 
 			if(descriptor!= null){
