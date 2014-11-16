@@ -92,8 +92,9 @@ public class CoderPlusBuildParticipant extends MojoExecutionBuildParticipant {
 						ds.setIncludes(includes);
 					}
 					ds.scan();
+					File resourceManifest = new File(outputDirectory,"META-INF"+File.separator+"remote-resources.xml");
 					String[] includedResourceFiles = ds.getIncludedFiles();
-					if(includedResourceFiles == null || includedResourceFiles.length == 0 ){
+					if(resourceManifest.exists() && (includedResourceFiles == null || includedResourceFiles.length == 0) ){
 						//ignore if there were no changes to the resources and was an incremental build
 						return null;
 					}
