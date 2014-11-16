@@ -41,7 +41,7 @@ public class CoderPlusBuildParticipant extends MojoExecutionBuildParticipant {
 	private static final String ATTACHED = "attached";
 	public CoderPlusBuildParticipant(MojoExecution execution) {
 
-		super(execution, true);
+		super(execution, true,true);
 	}
 
 	@Override
@@ -75,9 +75,12 @@ public class CoderPlusBuildParticipant extends MojoExecutionBuildParticipant {
 			project.addTestResource(resource);
 		}
 
+
+		File dotFile = new File( project.getBuild().getDirectory(), ".plxarc" );
+		
 		if(buildContext.isIncremental()){
-			if(!buildContext.hasDelta(pomFile.getLocation().toFile()) && PROCESS_GOAL.equals(execution.getGoal())) {
-				//ignore if there were no changes to the pom and was an incremental build
+			if((!buildContext.hasDelta(pomFile.getLocation().toFile())) && PROCESS_GOAL.equals(execution.getGoal()) && dotFile.exists()) {
+				//ignore if there were no changes to the pom, was an incremental build and the .plxarc file isn't present
 				return null;
 			} else if(BUNDLE_GOAL.equals(execution.getGoal())){
 				File resourcesDirectory = maven.getMojoParameterValue(project, execution, RESOURCES_DIRECTORY, File.class, new NullProgressMonitor());
