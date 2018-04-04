@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<description name="m2e connector for maven-remote-resources-plugin">
+		m2E connector for maven-remote-resources-plugin
+	</description>
+	<feature url="features/com.coderplus.m2e.remoteresourcesfeature_0.0.1.201411160138.jar"
+			id="com.coderplus.m2e.remoteresourcesfeature"
+			version="0.0.1.201411160138">
+		<category name="m2e-connector-for-maven-remote-resources-plugin"/>
+	</feature>
+	<category-def name="m2e-connector-for-maven-remote-resources-plugin" label="CoderPlus M2E Connectors">
+      <description>
+         m2e connector for maven-remote-resources-plugin
+      </description>
+   </category-def>
+</site>
